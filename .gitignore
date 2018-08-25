@@ -76,3 +76,4 @@ frontEnd/e2e/*.map
 #System Files
 frontEnd/.DS_Store
 frontEnd/Thumbs.db
+/biocoutureWS/.mvn
