@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.biocouture.dao.UserMapper">
+
+    <resultMap type="User" id="User_ResultMap">
+    	<id property="id" column="user_id"/>
+    	<result property="name" column="user_name"/>
+    	<result property="firstName" column="user_firstname"/>
+    	<result property="mail" column="user_mail"/>
+    	<result property="password" column="user_password"/>
+    </resultMap>
+    
+    
+	<select id="findAll" resultMap="User_ResultMap">
+    	SELECT user_id, user_name, user_firstname, user_mail, user_password
+  		FROM public."user"
+    </select>
+    
+</mapper>
