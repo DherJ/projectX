@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mamiko.dao.ArticleMapper">
+
+    <resultMap type="Article" id="Article_ResultMap">
+    	<id property="articleId" column="article_id"/>
+    	<result property="articleLabel" column="article_label"/>
+    	<result property="articleDescription" column="article_description"/>
+    	<result property="articlePriceHT" column="article_price_ht"/>
+    	<result property="articlePriceTTC" column="article_price_ttc"/>
+    	<result property="categorieId" column="article_price_ttc"/>
+    </resultMap>
+    
+    
+	<select id="findAll" resultMap="Article_ResultMap">
+    	SELECT article_id, 
+    	article_price_ht, 
+    	article_price_ttc
+  		FROM public."articles"
+    </select>
+    
+    <select id="findAllByCategorie" resultMap="Article_ResultMap">
+    	SELECT art.article_id, 
+    	art.article_price_ht, 
+    	art.article_price_ttc,
+    	(select lta.libelle_label from public."libelle_translation_article" lta where lta.libelle_article_type = '${@com.mamiko.enums.TypeLabeEnum@LABEL}' and lta.libelle_article_id = article_id and lta.libelle_code_langue = #{lang}) as article_label,
+  		(select lta.libelle_label from public."libelle_translation_article" lta where lta.libelle_article_type = '${@com.mamiko.enums.TypeLabeEnum@DESCRIPTION}' and lta.libelle_article_id = article_id and lta.libelle_code_langue = #{lang}) as article_description
+  		FROM public."articles" art
+  		INNER JOIN  public."link_categorie_article" lca on lca.article_id = art.article_id
+  		WHERE lca.categorie_ID = #{categorieId}
+    </select>
+   
+    <select id="findAllByCriteria" resultMap="Article_ResultMap" parameterType="com.mamiko.criteria.ArticleCriteria">
+    	SELECT article_id, 
+    	article_price_ht,
+    	article_price_ttc,
+    	(select lta.libelle_label from public."libelle_translation_article" lta where lta.libelle_article_type = '${@com.mamiko.enums.TypeLabeEnum@LABEL}' and lta.libelle_article_id = article_id and lta.libelle_code_langue = #{criteria.codeLangue}) as article_label,
+  		(select lta.libelle_label from public."libelle_translation_article" lta where lta.libelle_article_type = '${@com.mamiko.enums.TypeLabeEnum@DESCRIPTION}' and lta.libelle_article_id = article_id and lta.libelle_code_langue = #{criteria.codeLangue}) as article_description
+  		FROM public."articles"
+  		WHERE 1=1
+  		<if test="criteria != null">
+  			<if test="criteria.getPriceMin() != null"> AND article_price_ht &gt;= #{criteria.priceMin} </if>
+  			<if test="criteria.getPriceMax() != null"> AND article_price_ht &lt;= #{criteria.priceMax} </if>
+<!--   			<if test="criteria.getSizes() != null && criteria.getSizes().size() > 0"> </if> -->
+<!--   			<if test="criteria.getColors() != null && criteria.getSizes().colors() > 0"> </if> -->
+  		</if>
+    </select>
+    
+    <select id="find" resultMap="Article_ResultMap">
+    	SELECT article_id, article_price_ht, article_price_ttc,
+    	(select lta.libelle_label from public."libelle_translation_article" lta where lta.libelle_article_type = '${@com.mamiko.enums.TypeLabeEnum@LABEL}' and lta.libelle_article_id = article_id and lta.libelle_code_langue = #{criteria.codeLangue}) as article_label,
+  		(select lta.libelle_label from public."libelle_translation_article" lta where lta.libelle_article_type = '${@com.mamiko.enums.TypeLabeEnum@DESCRIPTION}' and lta.libelle_article_id = article_id and lta.libelle_code_langue = #{criteria.codeLangue}) as article_description
+  		FROM public."articles"
+  		WHERE article_id = #{id}
+    </select>
+    
+    <update id="update">
+		  update public."articles"
+		    <set>
+		      <if test="articlePrice != null">article_price_ht=#{articlePriceHT},</if>
+		      <if test="articlePrice != null">article_price_ttc=#{articlePriceTTC}</if>
+		    </set>
+		  where article_id = #{id}
+	</update>
+
+    <delete id="delete">
+    	DELETE FROM public."articles"
+  		WHERE article_id = #{id}
+    </delete>
+    
+</mapper>

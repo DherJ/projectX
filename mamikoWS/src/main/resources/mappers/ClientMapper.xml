@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mamiko.dao.ClientMapper">
+
+    <resultMap type="Client" id="client_ResultMap">
+    	<id property="id" column="client_id"/>
+    	<result property="name" column="client_name"/>
+    	<result property="firstName" column="client_firstname"/>
+    	<result property="mail" column="client_mail"/>
+    	<result property="password" column="client_password"/>
+    </resultMap>
+    
+    
+	<select id="findAll" resultMap="client_ResultMap">
+    	SELECT client_id, client_name, client_firstname, client_mail, client_password
+  		FROM public."clients"
+    </select>
+    
+    <select id="find" resultMap="client_ResultMap">
+    	SELECT client_id, client_name, client_firstname, client_mail, client_password
+  		FROM public."clients"
+  		WHERE client_id = #{id}
+    </select>
+
+	<insert id="insert" parameterType="Client"
+		useGeneratedKeys="true">
+		<selectKey keyProperty="id" resultType="int" order="BEFORE">
+			SELECT nextVal('clients_id_seq')
+		</selectKey>
+		INSERT INTO public."clients" (client_id,client_name, client_firstName, client_mail, client_password) VALUES
+		(#{id}, #{name}, #{firstName}, #{mail}, #{password})
+	</insert>
+
+    <update id="update">
+		  update public."clients"
+		    <set>
+		      <if test="name != null">client_name=#{name},</if>
+		      <if test="firstName != null">client_firstname=#{firstName},</if>
+		      <if test="mail != null">client_mail=#{mail},</if>
+		      <if test="password != null">client_password=#{password}</if>
+		    </set>
+		  where client_id=#{id}
+	</update>
+
+    <delete id="delete">
+    	DELETE FROM public."clients"
+  		WHERE client_id = #{id}
+    </delete>
+    
+</mapper>

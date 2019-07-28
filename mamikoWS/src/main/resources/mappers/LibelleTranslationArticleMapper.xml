@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mamiko.dao.LibelleTranslationArticleMapper">
+
+    <resultMap type="LibelleTranslationArticle" id="LibelleTranslationArticle_ResultMap">
+    	<id property="id" column="libelle_id"/>
+    	<result property="articleId" column="libelle_article_id"/>
+    	<result property="codeLangue" column="libelle_code_langue"/>
+    	<result property="label" column="libelle_label"/>
+    	<result property="typeLabel" column="libelle_article_type"/>
+    </resultMap>
+    
+    
+	<select id="findAll" resultMap="LibelleTranslationArticle_ResultMap">
+    	SELECT libelle_id, libelle_article_id, libelle_code_langue, libelle_label, libelle_article_type
+  		FROM public."libelle_translation_article"
+    </select>
+    
+    <select id="find" resultMap="LibelleTranslationArticle_ResultMap">
+    	SELECT libelle_id, libelle_article_id, libelle_code_langue, libelle_label, libelle_article_type
+  		FROM public."libelle_translation_article"
+  		WHERE libelle_id = #{id}
+    </select>
+    
+    <select id="findByArticleAndCodeLangue" resultMap="LibelleTranslationArticle_ResultMap">
+    	SELECT libelle_id, libelle_article_id, libelle_code_langue, libelle_label, libelle_article_type
+  		FROM public."libelle_translation_article"
+  		WHERE libelle_article_id = #{articleId}
+  		<if test="codeLangue != null">
+  			AND libelle_code_langue = #{codeLangue}
+  		</if>
+    </select>
+    
+    <update id="update">
+		  update public."libelle_translation_article"
+		    <set>
+		      <if test="codeLangue != null">libelle_code_langue=#{codeLangue},</if>
+		      <if test="label != null">libelle_label=#{label}</if>
+		    </set>
+		  where libelle_id=#{id}
+	</update>
+
+    <delete id="delete">
+    	DELETE FROM public."libelle_translation_article"
+  		WHERE libelle_id = #{id}
+    </delete>
+    
+</mapper>

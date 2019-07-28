@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mamiko.dao.CategorieLevelMapper">
+
+    <resultMap type="CategorieLevel" id="CategorieLevel_ResultMap">
+    	<id property="levelId" column="tree_categorie_level_id"/>
+    	<result property="levelNum" column="tree_categorie_level_num"/>
+    	<result property="levelParentNum" column="tree_categorie_parent_level_num"/>
+    	<result property="levelParentId" column="tree_categorie_parent_level_id"/>
+    	<result property="levelLabel" column="tree_categorie_level_label"/>
+    	
+<!--     	<collection property="libelles" javaType="ArrayList" ofType="java.util.Map" > -->
+<!--             <result property="key" column="libelle_code_langue"/> -->
+<!--             <result property="value" column="tree_categorie_level_label"/> -->
+<!--         </collection>  -->
+         <association property="libelles" resultMap="libelleMapResult"/>
+         
+    </resultMap>
+    
+    <resultMap id="libelleMapResult" type="java.util.Map">
+        <result column="key" property="libelle_code_langue"/>
+        <result column="value" property="tree_categorie_level_label"/>
+    </resultMap>
+    
+    
+	<select id="findAll" resultMap="CategorieLevel_ResultMap">
+    	SELECT tree_categorie_level_id, tree_categorie_level_num, tree_categorie_parent_level_num, tree_categorie_parent_level_id
+  		FROM public."tree_categorie"
+<!--   		INNER JOIN public."libelle_translation" on tree_categorie_level_id = libelle_level_id -->
+    </select>
+    
+    <select id="find" resultMap="CategorieLevel_ResultMap">
+    	SELECT tree_categorie_level_id, tree_categorie_level_num, tree_categorie_parent_level_num, tree_categorie_parent_level_id
+  		FROM public."tree_categorie"
+  		INNER JOIN public."libelle_translation" on tree_categorie_level_id = libelle_level_id
+  		WHERE tree_categorie_level_id = #{id}
+  		AND libelle_code_langue = #{codeLangue}
+    </select>
+    
+    <update id="update">
+		  update public."tree_categorie"
+		    <set>
+		      <if test="levelNum != null">tree_categorie_level_num=#{levelNum},</if>
+		      <if test="levelParentId != null">tree_categorie_parent_level_id=#{levelParentId},</if>
+		      <if test="levelParentNum != null">tree_categorie_parent_level_num=#{levelParentNum},</if>
+		      <if test="levelLabel != null">tree_categorie_level_label=#{levelLabel}</if>
+		    </set>
+		  where tree_categorie_level_id=#{levelId}
+	</update>
+
+    <delete id="delete">
+    	DELETE FROM public."tree_categorie"
+  		WHERE tree_categorie_level_id = #{id}
+    </delete>
+    
+</mapper>

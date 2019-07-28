@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mamiko.dao.TypeArticleMapper">
+
+    <resultMap type="com.mamiko.bo.TypeArticle" id="TypeArticle_ResultMap">
+    	<id property="id" column="type_article_id"/>
+    	<result property="label" column="type_article_label"/>
+    </resultMap>
+    
+    
+	<select id="findAll" resultMap="TypeArticle_ResultMap">
+    	SELECT type_article_id, type_article_label
+  		FROM public."types_articles"
+    </select>
+    
+    <select id="find" resultMap="TypeArticle_ResultMap">
+    	SELECT type_article_id, type_article_label
+  		FROM public."types_articles"
+  		WHERE type_article_id = #{id}
+    </select>
+    
+    <delete id="delete">
+    	DELETE FROM public."types_articles"
+  		WHERE type_article_id = #{id}
+    </delete>
+    
+</mapper>

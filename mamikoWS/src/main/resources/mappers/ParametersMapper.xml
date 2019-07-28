@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mamiko.dao.ParametersMapper">
+
+    <resultMap type="Parameter" id="Parameter_ResultMap">
+    	<id property="parameterCode" column="parameter_code"/>
+    	<result property="parameterValue" column="parameter_value"/>
+    </resultMap>
+    
+    
+	<select id="findAll" resultMap="Parameter_ResultMap">
+    	SELECT parameter_code, parameter_value
+  		FROM public."parameters"
+    </select>
+    
+    <select id="find" resultMap="Parameter_ResultMap">
+    	SELECT parameter_code, parameter_value
+  		FROM public."parameters"
+  		WHERE parameter_code = #{id}
+    </select>
+    
+    <update id="update">
+		  update public."parameters"
+		    <set>
+		      <if test="parameterValue != null">parameter_value=#{parameterValue}</if>
+		    </set>
+		  where parameter_code=#{parameterCode}
+	</update>
+
+    <delete id="delete">
+    	DELETE FROM public."parameters"
+  		WHERE parameter_code = #{parameterCode}
+    </delete>
+    
+</mapper>
