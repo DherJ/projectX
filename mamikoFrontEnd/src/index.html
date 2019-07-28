@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <!-- Add accepted URL -->
+    <meta http-equiv="Content-Security-Policy"
+          content="
+          default-src 'self' 'unsafe-inline' 'unsafe-eval'
+          data:
+          http://*.google-analytics.com
+          https://*.google-analytics.com
+          https://angularexampleapp.com
+          https://*.googletagmanager.com
+          https://*.gstatic.com
+          https://*.googleapis.com
+          https://*.herokuapp.com
+          ws: http://localhost:*;
+    ">
+    <title>Mamiko</title>
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="canonical" href="http://angularexampleapp.com/">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+<noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TF7QP5M" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+</noscript>
+
+<app-root>
+    <div class="loading-page">
+        <div class="spinner">
+            <div class="sk-cube1 sk-cube"></div>
+            <div class="sk-cube2 sk-cube"></div>
+            <div class="sk-cube4 sk-cube"></div>
+            <div class="sk-cube3 sk-cube"></div>
+        </div>
+    </div>
+</app-root>
+</body>
+</html>

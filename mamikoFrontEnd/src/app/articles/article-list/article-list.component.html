@@ -1,0 +1,33 @@
+<div id="left">
+    <h2 class="section-title">{{ 'articlesList' | translate }}</h2>
+    <div>
+        <mat-progress-spinner *ngIf="!articles"
+                             class="progress-spinner"
+                             [color]="'primary'"
+                             [mode]="'indeterminate'">
+        </mat-progress-spinner>
+        <mat-list>
+            <mat-list-item *ngFor="let article of articles">
+                <img class="cp"
+                     (click)="seeArticleDetails(article);" mat-list-avatar
+                     src="assets/images/articles/{{article.articleId}}.jpg">
+                <h3 mat-line [ngClass]="{'cp': hero.default}" (click)="seeArticleDetails(article);"> {{article.label}} </h3>
+                <p mat-line [ngClass]="{'cp': hero.default}" (click)="seeArticleDetails(article);">
+                    <span>{{hero.alterEgo}}</span>
+                </p>
+                <!-- <div class="hero-actions">
+                    {{hero.likes}}
+                    <mat-icon matTooltip="{{(canVote ? 'canVote' : 'cannotVote') | translate}}"
+                             [matTooltipPosition]="'above'"
+                             class="like-icon" (click)="like(hero)">
+                        favorite
+                    </mat-icon>
+                    <mat-icon class="remove-icon" *ngIf="!hero.default"
+                             (click)="remove(hero);">
+                        delete
+                    </mat-icon>
+                </div> -->
+            </mat-list-item>
+        </mat-list>
+    </div>
+</div>

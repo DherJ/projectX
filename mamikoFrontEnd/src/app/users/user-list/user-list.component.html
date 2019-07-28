@@ -1,0 +1,60 @@
+<div id="left">
+  <h2 class="section-title">{{ 'usersList' | translate }}</h2>
+  <div>
+      <mat-progress-spinner *ngIf="!users"
+                           class="progress-spinner"
+                           [color]="'primary'"
+                           [mode]="'indeterminate'">
+      </mat-progress-spinner>
+      <mat-list>
+          <mat-list-item *ngFor="let user of users">
+              <!-- <img *ngIf="user.default" class="cp"
+                   (click)="seeUserDetails(user);" mat-list-avatar
+                   src="assets/images/users/{{user.id}}-thumbnail.jpg"> -->
+              <img *ngIf="!user.default"
+                   (click)="seeUserDetails(user);" mat-list-avatar src="assets/images/users/{{user.id}}.jpg">
+              <h3 mat-line [ngClass]="{'cp': user.default}" (click)="seeUserDetails(user);"> {{user.name}} </h3>
+              <p mat-line [ngClass]="{'cp': user.default}" (click)="seeUserDetails(user);">
+                  <span>{{user.alterEgo}}</span>
+              </p>
+              <div class="user-actions">
+                  {{user.firstName}}
+                  <mat-icon matTooltip="{{(canVote ? 'canVote' : 'cannotVote') | translate}}"
+                           [matTooltipPosition]="'above'"
+                           class="like-icon" (click)="like(user)">
+                      favorite
+                  </mat-icon>
+                  <mat-icon class="remove-icon" *ngIf="!user.default"
+                           (click)="remove(user);">
+                      delete
+                  </mat-icon>
+              </div>
+          </mat-list-item>
+      </mat-list>
+  </div>
+</div>
+<!-- <div id="right">
+  <h2 class="section-title">{{ 'createUser' | translate }}</h2>
+  <div>
+      <form [formGroup]="newUserForm" #form="ngForm" (ngSubmit)="createNewUser(newUserForm.value)">
+          <mat-input-container class="input-container">
+              <input matInput type="text"
+                     placeholder="{{'name' | translate}}"
+                     formControlName="name">
+          </mat-input-container>
+
+          <mat-input-container class="input-container">
+              <input matInput type="text"
+                     placeholder="{{'realName' | translate}}"
+                     formControlName="alterEgo">
+          </mat-input-container>
+
+          <button mat-raised-button type="submit" [disabled]="!newUserForm.valid">
+              {{'create' | translate}}
+          </button>
+
+          <div *ngIf="error">{{error | translate}}</div>
+      </form>
+  </div>
+</div> -->
+<div class="clear"></div>
