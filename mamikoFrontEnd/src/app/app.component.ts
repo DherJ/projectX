@@ -26,7 +26,7 @@ export class AppComponent {
         // to change the title of the page
         switch (event.urlAfterRedirects) {
           case '/':
-            this.title.setTitle('Mamiko');
+            this.title.setTitle('Benjamin&Franklin');
             this.meta.updateTag({
               name: 'description',
               content: 'Vente de prêt à porter avec protection anti-ondes'

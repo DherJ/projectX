@@ -16,21 +16,21 @@ import {TreeCategorie} from './shared/tree-categorie.model';
 export class TreeCategorieComponent implements OnInit {
 
   private treeCategorie: TreeCategorie;
-
+  private isDataLoaded: boolean;
+  
   constructor(@Inject(APP_CONFIG) appConfig: IAppConfig,
     private progressBarService: ProgressBarService,
     translateService: TranslateService,
     private matIconRegistry: MatIconRegistry,
     sanitizer: DomSanitizer,
     private treeCategorieService: TreeCategorieService) {
-
+      this.isDataLoaded = false;
   }
 
   ngOnInit() {
-
-    this.treeCategorieService.getTreeCategorie().subscribe((treeCategorie: TreeCategorie) => {
-      this.treeCategorie = treeCategorie;
+    this.treeCategorieService.getTreeCategorie().subscribe((treeCategorieResult: TreeCategorie) => {
+      this.treeCategorie = treeCategorieResult;
+      this.isDataLoaded = true;
     });
   }
-
 }
