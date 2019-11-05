@@ -1,28 +1,27 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
-import { HttpModule } from '@angular/http';
 import {APP_CONFIG, AppConfig} from './config/app.config';
 
 import {AppRoutingModule} from './app-routing.module';
-import {SharedModule} from './shared/modules/shared.module';
-import {CoreModule} from './core/core.module';
+import {SharedModule} from './modules/shared.module';
+import {CoreModule} from './modules/core.module';
 
 import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {HttpLoaderFactory} from './app.translate.factory';
-import {HeroTopComponent} from './heroes/hero-top/hero-top.component';
-import { UsersComponent } from './users/users.component';
-import { UserListComponent } from './users/user-list/user-list.component';
-import { UserDetailComponent } from './users/user-detail/user-detail.component';
-import { TreeCategorieComponent } from './tree-categorie/tree-categorie.component';
-import { MainContainerComponent } from './core/main-container/main-container.component';
+import {HeroTopComponent} from './components/heroes/hero-top/hero-top.component';
+import { UsersComponent } from './components/users/users.component';
+import { UserListComponent } from './components/users/user-list/user-list.component';
+import { UserDetailComponent } from './components/users/user-detail/user-detail.component';
+import { TreeCategorieComponent } from './components/tree-categorie/tree-categorie.component';
+import { MainContainerComponent } from './components/main-container/main-container.component';
 
 @NgModule({
   imports: [
-    HttpModule,
+    HttpClientModule,
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
