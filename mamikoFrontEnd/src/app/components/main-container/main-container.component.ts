@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-main-container',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainContainerComponent implements OnInit {
 
-  constructor() { }
+  filterForm: FormGroup;
+
+  constructor(private fb: FormBuilder) { 
+    this.createForm();
+  }
 
   ngOnInit() {
   }
 
+  createForm() {
+    this.filterForm = this.fb.group({
+       name: ['', this.filterForm ]
+    });
+  }
 }

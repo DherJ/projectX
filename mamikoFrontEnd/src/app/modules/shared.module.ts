@@ -5,15 +5,20 @@ import {TranslateModule} from '@ngx-translate/core';
 import {HeroService} from '../services/hero.service';
 import {UserService} from '../services/user.service';
 import {TreeCategorieService} from '../services/tree-categorie.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
     MaterialModule,
-    TranslateModule
+    TranslateModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     MaterialModule,
-    TranslateModule
+    TranslateModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 
