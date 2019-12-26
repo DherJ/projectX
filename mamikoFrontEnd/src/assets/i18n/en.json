@@ -28,7 +28,6 @@
   "cancel": "Cancel",
   "remove": "Remove",
   "findHero": "Find a hero",
-  "back": "Back",
   "noHero": "There is no hero!",
   "heroDuplicated": "Hero id is already taken",
   "heroDefault": "It's a default hero, you cannot delete it",
@@ -54,5 +53,23 @@
   "en": "English",
   "pt-br": "Portugese",
   "de": "Deutch",
-  "es": "Spanish"
+  "es": "Spanish",
+  "articles": {
+    "articlesList": {
+      "title":"List of articles"
+    },
+    "filterForm": {
+      "title":"Filters",
+      "seeBasket":"See basket",
+      "allProductsButton":"See all products",
+      "rechercheLabel":"Search",
+      "priceLabel":"Price"
+    }
+  },
+  "buttons": {
+    "validate":"Validate",
+    "cancel":"Cancel",
+    "back": "Back",
+    "search":"Search"
+  }
 }

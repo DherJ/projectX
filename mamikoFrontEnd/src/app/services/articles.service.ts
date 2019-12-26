@@ -28,17 +28,16 @@ export class ArticlesService {
   }
 
   constructor(private http: HttpClient,
-              private translateService: TranslateService,
+              translateService: TranslateService,
               private snackBar: MatSnackBar) {
     this.request$ = new EventEmitter();
-
-    this.articlesUrl = AppConfig.endpoints.Articles;
+    this.articlesUrl = AppConfig.endpoints.articles;
     this.headers = new HttpHeaders({'Content-Type': 'application/json'});
   }
 
-  getArticles(): Observable<Article[]> {
+  getArticles(lang: string): Observable<Article[]> {
     this.request$.emit('starting');
-    return this.http.get<Article[]>(this.articlesUrl).pipe(
+    return this.http.get<Article[]>(this.articlesUrl, {params : {lang:lang}}).pipe(
       map(response => {
         this.request$.emit('finished');
         return response;
@@ -46,9 +45,9 @@ export class ArticlesService {
       catchError(error => this.handleError(error)),);
   }
 
-  getArticleById(articleId: number): Observable<Article> {
+  getArticleById(articleId: number, lang: string): Observable<Article> {
     this.request$.emit('starting');
-    return this.http.get<Article>(this.articlesUrl + '/' + articleId).pipe(
+    return this.http.get<Article>(this.articlesUrl + '/' + articleId, {params : {lang:lang}}).pipe(
       map(response => {
         this.request$.emit('finished');
         return response;

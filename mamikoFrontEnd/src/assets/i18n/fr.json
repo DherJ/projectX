@@ -50,9 +50,28 @@
   "heroRemoved": "Hero has gone :(",
   "heroDetail": "Hero detail",
   "usersList": "Users list",
+  "articlesList": "Liste des articles",
   "fr": "Français",
   "en": "Anglais",
   "pt-br": "Portugal",
   "de": "Allemand",
-  "es": "Espagnol"
+  "es": "Espagnol",
+  "articles": {
+    "articlesList": {
+      "title":"Liste des articles"
+    },
+    "filterForm": {
+      "title":"Filtres",
+      "seeBasket":"Afficher le panier",
+      "allProductsButton":"Voir tous les produits",
+      "rechercheLabel":"Rechercher",
+      "priceLabel":"Prix"
+    }
+  },
+  "buttons": {
+    "validate":"Valider",
+    "cancel":"Annuler",
+    "back": "Retour",
+    "search":"Rechercher"
+  }
 }

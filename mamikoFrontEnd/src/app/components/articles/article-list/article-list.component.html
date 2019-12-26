@@ -1,33 +1,26 @@
-<div id="left">
-    <h2 class="section-title">{{ 'articlesList' | translate }}</h2>
-    <div>
-        <mat-progress-spinner *ngIf="!articles"
-                             class="progress-spinner"
-                             [color]="'primary'"
-                             [mode]="'indeterminate'">
-        </mat-progress-spinner>
-        <mat-list>
-            <mat-list-item *ngFor="let article of articles">
-                <img class="cp"
-                     (click)="seeArticleDetails(article);" mat-list-avatar
-                     src="assets/images/articles/{{article.articleId}}.jpg">
-                <h3 mat-line [ngClass]="{'cp': hero.default}" (click)="seeArticleDetails(article);"> {{article.label}} </h3>
-                <p mat-line [ngClass]="{'cp': hero.default}" (click)="seeArticleDetails(article);">
-                    <span>{{hero.alterEgo}}</span>
-                </p>
-                <!-- <div class="hero-actions">
-                    {{hero.likes}}
-                    <mat-icon matTooltip="{{(canVote ? 'canVote' : 'cannotVote') | translate}}"
+
+    <h1 class="section-title">{{'articles.articlesList.title' | translate}}</h1>
+    <mat-progress-spinner *ngIf="!displayArticles" class="progress-spinner" [color]="'primary'" [mode]="'indeterminate'">
+    </mat-progress-spinner>
+    <div class="cardList" *ngIf="displayArticles">
+        <ng-container *ngFor="let article of articles">
+            <mat-card class="article-card">
+                <mat-card-header>
+                    <div mat-card-avatar class="article-header-image"
+                        [ngStyle]="{'background-image': 'url(assets/images/articles/' + article.articleId + '.jpg)'}">
+                    </div>
+                    <mat-card-title>{{article.articleLabel}}</mat-card-title>
+                   <mat-card-subtitle>{{article.articleDescription}}</mat-card-subtitle>
+                    <div class="flex-spacer"></div>
+                    <div class="article-actions">
+                        {{article.articlePriceTTC}}
+                        <!-- <mat-icon matTooltip="{{(canVote ? 'canVote' : 'cannotVote') | translate}}"
                              [matTooltipPosition]="'above'"
-                             class="like-icon" (click)="like(hero)">
-                        favorite
-                    </mat-icon>
-                    <mat-icon class="remove-icon" *ngIf="!hero.default"
-                             (click)="remove(hero);">
-                        delete
-                    </mat-icon>
-                </div> -->
-            </mat-list-item>
-        </mat-list>
+                             class="like-icon" (click)="like(hero)">favorite
+                    </mat-icon> -->
+                    </div>
+                </mat-card-header>
+                <img mat-card-image src="assets/images/articles/{{article.articleId}}.jpg">
+            </mat-card>
+        </ng-container>
     </div>
-</div>

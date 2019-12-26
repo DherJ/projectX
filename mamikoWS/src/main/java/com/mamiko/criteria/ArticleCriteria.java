@@ -4,7 +4,6 @@ import java.util.List;
 
 public class ArticleCriteria {
 
-	private Integer id;
 	private String label;
 	private String codeLangue;
 	private Integer priceMin;
@@ -13,14 +12,6 @@ public class ArticleCriteria {
 	private List<String> colors;
 	
 	public ArticleCriteria() {}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public String getLabel() {
 		return label;
@@ -72,7 +63,7 @@ public class ArticleCriteria {
 
 	@Override
 	public String toString() {
-		return "ArticleCriteria [id=" + id + ", label=" + label + ", codeLangue=" + codeLangue + ", priceMin="
+		return "ArticleCriteria [label=" + label + ", codeLangue=" + codeLangue + ", priceMin="
 				+ priceMin + ", priceMax=" + priceMax + ", sizes=" + sizes + ", colors=" + colors + "]";
 	}
 

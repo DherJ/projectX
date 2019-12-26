@@ -7,10 +7,10 @@ import {AppConfig} from './config/app.config';
 
 const routes: Routes = [
   {path: '', redirectTo: '/', pathMatch: 'full'},
-  {path: '', component: HeroTopComponent},
+  // {path: '', component: HeroTopComponent},
   {path: AppConfig.routes.heroes, loadChildren: './modules/heroes.module#HeroesModule'},
   {path: 'users', component: UserListComponent},
-  {path: AppConfig.routes.heroes, loadChildren: './modules/users.module#UsersModule'},
+  {path: AppConfig.routes.articles, loadChildren: './modules/articles.module#ArticlesModule'},
   {path: AppConfig.routes.treeCategorie, loadChildren: './modules/tree-categorie.module#TreeCategorieModule'}
 ];
 

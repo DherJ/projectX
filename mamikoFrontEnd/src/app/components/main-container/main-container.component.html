@@ -1,24 +1,59 @@
-<div>
+<div id="mainContainer">
 
-  <app-tree-categorie></app-tree-categorie>
+  <div class="treeCategorieDiv">
+    <app-tree-categorie [treeCategorie]="treeCategorie"></app-tree-categorie>
+  </div>
 
   <div class="centerDiv">
 
     <div id="filterDiv" class="filterDiv">
-      <h2>La boutique</h2>
-      
+      <div class="title">
+        <h2>{{ 'articles.filterForm.title' | translate }}</h2>
+      </div>
+      <div class="divider">
+        <mat-divider></mat-divider>
+      </div>
+      <form #articleCriteriaForm="ngForm" (ngSubmit)="onClickSubmit(articleCriteria)">
+        <div class="form-group">
+          <mat-form-field>
+            <input matInput type="text" class="form-control" id="labelCriteria"
+              placeholder="{{'articles.filterForm.rechercheLabel' | translate}}">
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <label for="priceCriteria">{{'articles.filterForm.priceLabel' | translate}}</label>
+          <div>
+            10€ <mat-slider default="true" id="priceCriteria" min="10" max="500" thumbLabel [displayWith]="formatLabel"></mat-slider> 500€
+          </div>
+       </div>
+
+        <div class="form-group formSubmit">
+          <button _ngcontent-csr-c224="" type="submit" mat-raised-button="" color="accent"
+            class="mat-raised-button mat-button-base mat-accent submitButton"><span
+              class="mat-button-wrapper">{{ 'buttons.search' | translate }}</span>
+            <div matripple="" class="mat-button-ripple mat-ripple"></div>
+            <div class="mat-button-focus-overlay"></div>
+          </button>
+        </div>
+      </form>
+
+      <div class="seeProductsButton">
+        <button _ngcontent-csr-c224="" mat-raised-button="" color="accent"
+          class="mat-raised-button mat-button-base mat-accent"><span
+            class="mat-button-wrapper">{{ 'articles.filterForm.allProductsButton' | translate }}</span>
+          <div matripple="" class="mat-button-ripple mat-ripple"></div>
+          <div class="mat-button-focus-overlay"></div>
+        </button>
+    </div>
+    <div class="seeBasketButton">
       <button _ngcontent-csr-c224="" mat-raised-button="" color="accent"
-        class="mat-raised-button mat-button-base mat-accent"><span class="mat-button-wrapper">Tous les produits</span>
+        class="mat-raised-button mat-button-base mat-accent"><span
+          class="mat-button-wrapper">{{ 'articles.filterForm.seeBasket' | translate }}</span>
         <div matripple="" class="mat-button-ripple mat-ripple"></div>
         <div class="mat-button-focus-overlay"></div>
       </button>
-
-      <button _ngcontent-csr-c224="" mat-raised-button="" color="accent"
-        class="mat-raised-button mat-button-base mat-accent"><span class="mat-button-wrapper">Voir le panier</span>
-        <div matripple="" class="mat-button-ripple mat-ripple"></div>
-        <div class="mat-button-focus-overlay"></div>
-      </button>
-
+    </div>
       <!-- <h3 class="widget-title">Recherche</h3>
       <form class="example-container" [formGroup]="filterForm">
         <mat-form-field>
@@ -34,8 +69,8 @@
 
     </div>
 
-    <div id="articlesDiv" class="articlesDiv">
-      articles
+    <div class="articlesDiv" *ngIf="articlesLoaded">
+      <app-articles [articles]="articles"></app-articles>
     </div>
 
   </div>

@@ -18,6 +18,8 @@ import { UserListComponent } from './components/users/user-list/user-list.compon
 import { UserDetailComponent } from './components/users/user-detail/user-detail.component';
 import { TreeCategorieComponent } from './components/tree-categorie/tree-categorie.component';
 import { MainContainerComponent } from './components/main-container/main-container.component';
+import { ArticlesComponent } from './components/articles/articles.component';
+import { ArticleListComponent } from './components/articles/article-list/article-list.component';
 
 @NgModule({
   imports: [
@@ -44,7 +46,9 @@ import { MainContainerComponent } from './components/main-container/main-contain
     UserListComponent,
     UserDetailComponent,
     TreeCategorieComponent,
-    MainContainerComponent
+    MainContainerComponent,
+    ArticlesComponent,
+    ArticleListComponent
   ],
   providers: [
     {provide: APP_CONFIG, useValue: AppConfig}

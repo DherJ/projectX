@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, Input } from '@angular/core';
 import {DomSanitizer} from '@angular/platform-browser';
 import {APP_CONFIG, AppConfig} from '../../config/app.config';
 import {IAppConfig} from '../../config/iapp.config';
@@ -15,7 +15,8 @@ import {Article} from '../../models/article.model';
 
 export class ArticlesComponent implements OnInit {
 
-  private articles: Article[];
+  @Input("articles") articles: Article[];
+  private articlesFiltered: Article[];
 
   constructor(@Inject(APP_CONFIG) appConfig: IAppConfig,
     private progressBarService: ProgressBarService,
@@ -27,10 +28,6 @@ export class ArticlesComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    this.articlesService.getArticles().subscribe((articles: Article[]) => {
-      this.articles = articles;
-    });
   }
 
 }

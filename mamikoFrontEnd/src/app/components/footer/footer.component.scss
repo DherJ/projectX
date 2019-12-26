@@ -1,23 +1,24 @@
-footer {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  padding: 8px 16px;
-  color: white;
-  height: 3.6em;
-  background: #3f51b5;
-  margin-top: 2em;
-  position: sticky;
-  top: 100%;
+:host(app-footer) {
+    width: 100%;
+    display: contents;
 
-  img {
-    height: 4em;
-  }
+    footer {
+      padding-top: 0;
+      padding-bottom: 5em;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      padding: 8px 16px;
+      color: white;
+      height: 3.6em;
+      background: #3f51b5;
+      margin-top: 2em;
+      position: absolute;
+      top: 100%;
+      width: 100%;
 
-  @media (max-width: 360px) {
-    height: 50%;
-    text-align: center;
-    display: block;
-    padding-top: 1em;
+      img {
+        height: 4em;
+      }
   }
 }

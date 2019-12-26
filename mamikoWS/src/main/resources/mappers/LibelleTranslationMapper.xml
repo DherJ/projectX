@@ -29,9 +29,6 @@
   		<if test="codeLangue != null">
   			AND libelle_code_langue = #{codeLangue}
   		</if>
-  		<if test="codeLangue == null">
-  			AND libelle_code_langue = 'en'
-  		</if>
     </select>
     
     <update id="update">

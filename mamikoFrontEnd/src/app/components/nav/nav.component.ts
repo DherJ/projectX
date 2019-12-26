@@ -1,4 +1,4 @@
-import {Component, Inject, Input, OnInit} from '@angular/core';
+import {Component, Inject, Input, OnInit, Output} from '@angular/core';
 import {TranslateService} from '@ngx-translate/core';
 
 import {DomSanitizer} from '@angular/platform-browser';
@@ -19,13 +19,13 @@ import { MatIconRegistry } from '@angular/material/icon';
 export class NavComponent implements OnInit {
 
   @Input() parameters: Parameter[];
+  @Output() selectedLanguage: string;
 
   languageList: string[];
   appConfig: any;
   menuItems: any[];
   progressBarMode: string;
   languages: string[];
-  selectedLanguage: string;
   selectedFlag: string;
   private translateService: TranslateService;
 

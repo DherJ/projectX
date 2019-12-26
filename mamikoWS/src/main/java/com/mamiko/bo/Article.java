@@ -1,6 +1,7 @@
 package com.mamiko.bo;
 
 import java.util.List;
+import java.util.Map;
 
 public class Article {
 
@@ -87,7 +88,7 @@ public class Article {
 	public void setCategorieId(Integer categorieId) {
 		this.categorieId = categorieId;
 	}
-
+	
 	@Override
 	public String toString() {
 		return "Article [articleId=" + articleId + ", articleLabel=" + articleLabel + ", articleDescription="

@@ -1,4 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
+import {Component, ViewChild, Input, OnInit} from '@angular/core';
 import {Article} from '../../../models/article.model';
 import {ArticlesService} from '../../../services/articles.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
@@ -6,6 +6,7 @@ import {MatDialog} from '@angular/material';
 import {AppConfig} from '../../../config/app.config';
 import {Router} from '@angular/router';
 import {LoggerService} from '../../../services/logger.service';
+import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-article-list',
@@ -13,23 +14,26 @@ import {LoggerService} from '../../../services/logger.service';
   styleUrls: ['./article-list.component.scss']
 })
 
-export class ArticleListComponent {
-  articles: Article[];
+export class ArticleListComponent implements OnInit {
+  
   error: string;
-  @ViewChild('form') myNgForm; // just to call resetForm method
+  lang: string;
+  @Input("articles") articles: Article[];
+  private displayArticles: boolean = false;
 
-  constructor(private articlesService: ArticlesService,
+  @ViewChild('form') myNgForm;
+
+  constructor(translateService: TranslateService,
               private dialog: MatDialog,
               private router: Router,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder) {      
+  }
 
-    this.articlesService.getArticles().subscribe((articles: Array<Article>) => {
-      this.articles = articles;
-    });
+  ngOnInit() {
+    this.displayArticles = true;
   }
 
   seeArticleDetails(article): void {
     this.router.navigate([AppConfig.routes.articles + '/' + article.articleId]);
   }
-
 }

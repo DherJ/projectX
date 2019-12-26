@@ -8,6 +8,7 @@ export const AppConfig: IAppConfig = {
   webServiceUrl: 'http://localhost:8080/',
   routes: {
     treeCategorie: 'treecategorie',
+    articles: 'articles',
     heroes: 'heroes',
     users: 'users'
   },
@@ -15,7 +16,8 @@ export const AppConfig: IAppConfig = {
     heroes: 'https://nodejs-example-app.herokuapp.com/heroes',
     users: 'http://localhost:8080/users/',
     parameters: 'http://localhost:8080/parameters/',
-    treeCategorie: 'http://localhost:8080/tree-categorie/'
+    treeCategorie: 'http://localhost:8080/tree-categorie/',
+    articles: 'http://localhost:8080/articles/'
   },
   votesLimit: 3,
   topHeroesLimit: 4,

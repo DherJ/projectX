@@ -6,6 +6,7 @@ import {HeroService} from '../services/hero.service';
 import {UserService} from '../services/user.service';
 import {TreeCategorieService} from '../services/tree-categorie.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ArticlesService } from '../services/articles.service';
 
 @NgModule({
   imports: [
@@ -27,7 +28,7 @@ export class SharedModule {
     return {
       ngModule: SharedModule,
       providers: [
-        ProgressBarService, HeroService, UserService, TreeCategorieService
+        ProgressBarService, HeroService, UserService, TreeCategorieService, ArticlesService
       ]
     };
   }
