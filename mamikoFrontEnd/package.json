@@ -14,7 +14,7 @@
     "release": "standard-version && git push --follow-tags origin master"
   },
   "dependencies": {
-    "@angular-devkit/build-angular": "^0.13.9",
+    "@angular-devkit/build-angular": "^15.0.4",
     "@angular/animations": "6.0.7",
     "@angular/common": "6.0.7",
     "@angular/compiler": "6.0.7",
